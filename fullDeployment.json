@@ -10,9 +10,11 @@
       "defaultValue": "AtlassianOrgDCR",
       "type": "String"
     },
-    "workspaces_tariansentinel_externalid": {
-      "defaultValue": "/subscriptions/1e60bdfd-8b33-4950-9563-a71d46c57806/resourceGroups/tarian-base-rg/providers/microsoft.operationalinsights/workspaces/tariansentinel",
-      "type": "String"
+    "workspaceResourceId": {
+      "type": "String",
+      "metadata": {
+        "description": "Resource ID of the Log Analytics workspace (also used for the Logic App Sentinel tag). Example: /subscriptions/<subId>/resourceGroups/<rgName>/providers/microsoft.operationalinsights/workspaces/<workspaceName>"
+      }
     },
     "workflows_Atlassian_Org_Integration_name": {
       "defaultValue": "Atlassian-Org-Integration",
@@ -64,7 +66,7 @@
         "destinations": {
           "logAnalytics": [
             {
-              "workspaceResourceId": "[parameters('workspaces_tariansentinel_externalid')]",
+              "workspaceResourceId": "[parameters('workspaceResourceId')]",
               "name": "68d97ffda6634873a2142fc6f8189001"
             }
           ]
@@ -92,7 +94,7 @@
       "name": "[parameters('workflows_Atlassian_Org_Integration_name')]",
       "location": "[parameters('location')]",
       "tags": {
-        "hidden-SentinelWorkspaceId": "/subscriptions/1e60bdfd-8b33-4950-9563-a71d46c57806/resourceGroups/Tarian-Base-RG/providers/microsoft.OperationalInsights/Workspaces/tariansentinel"
+        "hidden-SentinelWorkspaceId": "[parameters('workspaceResourceId')]"
       },
       "identity": {
         "type": "SystemAssigned"
