@@ -1,0 +1,448 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workflows_Atlassian_Org_Integration_name": {
+            "defaultValue": "Atlassian-Org-Integration",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "name": "[parameters('workflows_Atlassian_Org_Integration_name')]",
+            "location": "australiaeast",
+            "tags": {
+                "hidden-SentinelWorkspaceId": "/subscriptions/1e60bdfd-8b33-4950-9563-a71d46c57806/resourceGroups/Tarian-Base-RG/providers/microsoft.OperationalInsights/Workspaces/tariansentinel"
+            },
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "state": "Enabled",
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "manual": {
+                            "type": "Request",
+                            "kind": "Http",
+                            "inputs": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string"
+                                                    },
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "attributes": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "time": {
+                                                                "type": "string"
+                                                            },
+                                                            "action": {
+                                                                "type": "string"
+                                                            },
+                                                            "actor": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "name": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "email": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "picture": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "links": {
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                            "alt": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "self": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "auth": {
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                            "authType": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "tokenId": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "tokenName": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "context": {
+                                                                "type": "array"
+                                                            },
+                                                            "container": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "id": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "type": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "attributes": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "traceId": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "fullPath": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "siteHostName": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "query:from": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "query:to": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "siteName": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "httpMethod": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "statusCode": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "links": {
+                                                                            "type": "object",
+                                                                            "properties": {
+                                                                                "alt": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "required": [
+                                                                        "id",
+                                                                        "type",
+                                                                        "attributes",
+                                                                        "links"
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "location": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "ip": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "countryName": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "regionName": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "city": {}
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "links": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "self": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    },
+                                                    "message": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "content": {
+                                                                "type": "string"
+                                                            },
+                                                            "format": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "required": [
+                                                    "type",
+                                                    "id",
+                                                    "attributes",
+                                                    "links",
+                                                    "message"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "actions": {
+                        "Initialize_variables": {
+                            "runAfter": {
+                                "Parse_JSON": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "DCELogsIngestionURL",
+                                        "type": "string",
+                                        "value": "https://atlassianorgdce-7356.australiaeast-1.ingest.monitor.azure.com"
+                                    },
+                                    {
+                                        "name": "DCRImmutableID",
+                                        "type": "string",
+                                        "value": "dcr-6e3c8f5adc5945d795456542a7cb7a10"
+                                    },
+                                    {
+                                        "name": "DCRStreamName",
+                                        "type": "string",
+                                        "value": "Custom-atlassian_org_CL"
+                                    }
+                                ]
+                            }
+                        },
+                        "HTTP": {
+                            "runAfter": {
+                                "Initialize_variables": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "Http",
+                            "inputs": {
+                                "uri": "@{variables('DCELogsIngestionURL')}/dataCollectionRules/@{variables('DCRImmutableID')}/streams/@{variables('DCRStreamName')}?api-version=2023-01-01",
+                                "method": "POST",
+                                "headers": {
+                                    "Content-Type": "application/json"
+                                },
+                                "body": [
+                                    {
+                                        "TimeGenerated": "@{formatDateTime(utcNow(), 'yyyy-MM-dd HH:mm:ssZ')}",
+                                        "data": "@{triggerBody()?['data']}"
+                                    }
+                                ],
+                                "authentication": {
+                                    "type": "ManagedServiceIdentity",
+                                    "audience": "https://monitor.azure.com/"
+                                }
+                            },
+                            "runtimeConfiguration": {
+                                "contentTransfer": {
+                                    "transferMode": "Chunked"
+                                }
+                            }
+                        },
+                        "Parse_JSON": {
+                            "runAfter": {},
+                            "type": "ParseJson",
+                            "inputs": {
+                                "content": "@triggerBody()",
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "attributes": {
+                                            "type": "object",
+                                            "properties": {
+                                                "time": {
+                                                    "type": "string"
+                                                },
+                                                "action": {
+                                                    "type": "string"
+                                                },
+                                                "actor": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string"
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "email": {
+                                                            "type": "string"
+                                                        },
+                                                        "picture": {
+                                                            "type": "string"
+                                                        },
+                                                        "links": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "alt": {
+                                                                    "type": "string"
+                                                                },
+                                                                "self": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        },
+                                                        "auth": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "authType": {
+                                                                    "type": "string"
+                                                                },
+                                                                "tokenId": {
+                                                                    "type": "string"
+                                                                },
+                                                                "tokenName": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "context": {
+                                                    "type": "array"
+                                                },
+                                                "container": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string"
+                                                            },
+                                                            "type": {
+                                                                "type": "string"
+                                                            },
+                                                            "attributes": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "traceId": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "fullPath": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "siteHostName": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "query:from": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "query:to": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "siteName": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "httpMethod": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "statusCode": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "links": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "alt": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "id",
+                                                            "type",
+                                                            "attributes",
+                                                            "links"
+                                                        ]
+                                                    }
+                                                },
+                                                "location": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "ip": {
+                                                            "type": "string"
+                                                        },
+                                                        "countryName": {
+                                                            "type": "string"
+                                                        },
+                                                        "regionName": {
+                                                            "type": "string"
+                                                        },
+                                                        "city": {}
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "links": {
+                                            "type": "object",
+                                            "properties": {
+                                                "self": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "object",
+                                            "properties": {
+                                                "content": {
+                                                    "type": "string"
+                                                },
+                                                "format": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {}
+                    }
+                }
+            }
+        }
+    ]
+}
