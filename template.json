@@ -225,12 +225,12 @@
                                     {
                                         "name": "DCELogsIngestionURL",
                                         "type": "string",
-                                        "value": "https://atlassianorgdce-7356.australiaeast-1.ingest.monitor.azure.com"
+                                        "value": "https://<YOURINGEST>.ingest.monitor.azure.com"
                                     },
                                     {
                                         "name": "DCRImmutableID",
                                         "type": "string",
-                                        "value": "dcr-6e3c8f5adc5945d795456542a7cb7a10"
+                                        "value": "dcr-<ID>"
                                     },
                                     {
                                         "name": "DCRStreamName",
