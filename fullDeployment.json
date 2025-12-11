@@ -68,7 +68,7 @@
         "destinations": {
           "logAnalytics": [
             {
-              "workspaceResourceId": "[parameters('workspaceResourceId')]",
+              "workspaceResourceId": "[variables('workspaceResourceId')]",
               "name": "68d97ffda6634873a2142fc6f8189001"
             }
           ]
@@ -96,7 +96,7 @@
       "name": "[parameters('workflows_Atlassian_Org_Integration_name')]",
       "location": "[parameters('location')]",
       "tags": {
-        "hidden-SentinelWorkspaceId": "[parameters('workspaceResourceId')]"
+        "hidden-SentinelWorkspaceId": "[variables('workspaceResourceId')]"
       },
       "identity": {
         "type": "SystemAssigned"
