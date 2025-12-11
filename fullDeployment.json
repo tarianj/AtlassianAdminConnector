@@ -10,10 +10,10 @@
       "defaultValue": "AtlassianOrgDCR",
       "type": "String"
     },
-    "workspaceResourceId": {
+    "workspaceName": {
       "type": "String",
       "metadata": {
-        "description": "Resource ID of the Log Analytics workspace (also used for the Logic App Sentinel tag). Example: /subscriptions/<subId>/resourceGroups/<rgName>/providers/microsoft.operationalinsights/workspaces/<workspaceName>"
+        "description": "Name of the Log Analytics workspace in this resource group."
       }
     },
     "workflows_Atlassian_Org_Integration_name": {
@@ -25,7 +25,9 @@
       "defaultValue": "australiaeast"
     }
   },
-  "variables": {},
+  "variables": {
+    "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
+  },
   "resources": [
     {
       "type": "Microsoft.Insights/dataCollectionEndpoints",
