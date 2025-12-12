@@ -181,7 +181,7 @@
             "destinations": [
               "68d97ffda6634873a2142fc6f8189001"
             ],
-            "transformKql": "source\n| extend TimeGenerated = coalesce(todatetime(data.attributes.time), now())\n",
+            "transformKql": "source\n| extend TimeGenerated = todatetime(data.attributes.processedAt)\n\n",
             "outputStream": "Custom-atlassian_org_CL"
           }
         ]
