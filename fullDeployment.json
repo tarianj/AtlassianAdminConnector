@@ -26,7 +26,6 @@
     },
     "AtlassianOrgId": {
       "type": "string",
-      "defaultValue": "83j8b9b3-66kj-1390-6j32-abkb38a28634",
       "metadata": {
         "description": "Atlassian organisation ID used for the admin events API."
       }
@@ -51,15 +50,16 @@
         "description": "Value of the Atlassian API key to store in Key Vault."
       }
     },
-    "connections_keyvault_externalid": {
+    "keyVaultConnectionName": {
       "type": "string",
+      "defaultValue": "keyvault",
       "metadata": {
-        "description": "Resource ID of the Key Vault API connection (Microsoft.Web/connections/keyvault)."
+        "description": "Name of the Microsoft.Web/connections resource for Key Vault."
       }
-    }
   },
   "variables": {
-    "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
+    "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]",
+    "keyVaultConnectionId": "[resourceId('Microsoft.Web/connections', parameters('keyVaultConnectionName'))]"
   },
   "resources": [
     {
@@ -371,7 +371,7 @@
             "value": {
               "keyvault": {
                 "id": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Web/locations/', parameters('location'), '/managedApis/keyvault')]",
-                "connectionId": "[parameters('connections_keyvault_externalid')]",
+                "connectionId": "[variables('keyVaultConnectionId')]",
                 "connectionName": "keyvault",
                 "connectionProperties": {
                   "authentication": {
