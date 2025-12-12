@@ -56,7 +56,8 @@
       "metadata": {
         "description": "Name of the Microsoft.Web/connections resource for Key Vault."
       }
-  },
+  }
+},
   "variables": {
     "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]",
     "keyVaultConnectionId": "[resourceId('Microsoft.Web/connections', parameters('keyVaultConnectionName'))]"
