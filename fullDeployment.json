@@ -32,14 +32,14 @@
     },
     "keyVaultName": {
       "type": "string",
-      "defaultValue": "atlassiankey",
+      "defaultValue": "atlassianapikey",
       "metadata": {
         "description": "Name of the Key Vault to store the Atlassian API key."
       }
     },
     "keyVaultSecretName": {
       "type": "string",
-      "defaultValue": "AtlassianKey",
+      "defaultValue": "AtlassianAPIKey",
       "metadata": {
         "description": "Name of the secret that stores the Atlassian API key."
       }
@@ -129,11 +129,11 @@
           "columns": [
             {
               "name": "TimeGenerated",
-              "type": "DateTime"
+              "type": "dateTime"
             },
             {
               "name": "data",
-              "type": "Dynamic"
+              "type": "dynamic"
             }
           ],
           "displayName": "Atlassian Org Events",
