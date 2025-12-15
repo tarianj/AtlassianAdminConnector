@@ -192,6 +192,19 @@
       ]
     },
     {
+  "type": "Microsoft.Web/connections",
+  "apiVersion": "2016-06-01",
+  "name": "[parameters('keyVaultConnectionName')]",
+  "location": "[parameters('location')]",
+  "properties": {
+    "displayName": "[parameters('keyVaultConnectionName')]",
+    "api": {
+      "id": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Web/locations/', parameters('location'), '/managedApis/keyvault')]"
+    },
+    "parameterValues": {}
+  }
+},
+    {
       "type": "Microsoft.Logic/workflows",
       "apiVersion": "2017-07-01",
       "name": "[parameters('workflows_Atlassian_Org_Integration_name')]",
@@ -372,8 +385,8 @@
             "value": {
               "keyvault": {
                 "id": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Web/locations/', parameters('location'), '/managedApis/keyvault')]",
-                "connectionId": "[variables('keyVaultConnectionId')]",
-                "connectionName": "keyvault",
+                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('keyVaultConnectionName'))]",
+                "connectionName": "[parameters('keyVaultConnectionName')]",
                 "connectionProperties": {
                   "authentication": {
                     "type": "ManagedServiceIdentity"
@@ -396,7 +409,8 @@
       "dependsOn": [
         "[resourceId('Microsoft.Insights/dataCollectionEndpoints', parameters('dataCollectionEndpoints_AtlassianOrgDCE_name'))]",
         "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRules_AtlassianOrgDCR_name'))]",
-        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+        "[resourceId('Microsoft.Web/connections', parameters('keyVaultConnectionName'))]"
       ]
     }
   ]
