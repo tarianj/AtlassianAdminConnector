@@ -417,35 +417,6 @@
         "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
         "[resourceId('Microsoft.Web/connections', parameters('keyVaultConnectionName'))]"
       ]
-    },
-    {
-  "type": "Microsoft.Authorization/roleAssignments",
-  "apiVersion": "2022-04-01",
-  "name": "[guid(resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName')), 'KeyVaultSecretsUser', reference(resourceId('Microsoft.Logic/workflows', parameters('workflows_Atlassian_Org_Integration_name')), '2017-07-01', 'full').identity.principalId)]",
-  "scope": "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
-  "properties": {
-    "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '4633458b-17de-408a-b874-0445c86b69e6')]",
-    "principalId": "[reference(resourceId('Microsoft.Logic/workflows', parameters('workflows_Atlassian_Org_Integration_name')), '2017-07-01', 'full').identity.principalId]",
-    "principalType": "ServicePrincipal"
-  },
-  "dependsOn": [
-    "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
-    "[resourceId('Microsoft.Logic/workflows', parameters('workflows_Atlassian_Org_Integration_name'))]"
-  ]
-},
-{
-  "type": "Microsoft.Authorization/roleAssignments",
-  "apiVersion": "2022-04-01",
-  "name": "[guid(resourceGroup().id, 'MonitoringMetricsPublisher', reference(resourceId('Microsoft.Logic/workflows', parameters('workflows_Atlassian_Org_Integration_name')), '2017-07-01', 'full').identity.principalId)]",
-  "scope": "[resourceGroup().id]",
-  "properties": {
-    "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '3913510d-42f4-4e42-8a64-420c390055eb')]",
-    "principalId": "[reference(resourceId('Microsoft.Logic/workflows', parameters('workflows_Atlassian_Org_Integration_name')), '2017-07-01', 'full').identity.principalId]",
-    "principalType": "ServicePrincipal"
-  },
-  "dependsOn": [
-    "[resourceId('Microsoft.Logic/workflows', parameters('workflows_Atlassian_Org_Integration_name'))]"
-  ]
-}
+    }
   ]
 }
