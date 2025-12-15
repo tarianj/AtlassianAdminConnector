@@ -202,11 +202,7 @@
       "id": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Web/locations/', parameters('location'), '/managedApis/keyvault')]"
     },
     "parameterValueType": "Alternative",
-    "parameterValues": {
-      "authentication": {
-        "type": "ManagedServiceIdentity"
-      }
-    }
+    "parameterValues": {}
   }
 },
     {
