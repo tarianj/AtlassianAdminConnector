@@ -191,7 +191,7 @@
         "[resourceId('Microsoft.OperationalInsights/workspaces/tables', parameters('workspaceName'), 'atlassian_org_CL')]"
       ]
     },
-    {
+{
   "type": "Microsoft.Web/connections",
   "apiVersion": "2016-06-01",
   "name": "[parameters('keyVaultConnectionName')]",
@@ -201,7 +201,12 @@
     "api": {
       "id": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Web/locations/', parameters('location'), '/managedApis/keyvault')]"
     },
-    "parameterValues": {}
+    "parameterValueType": "Alternative",
+    "parameterValues": {
+      "authentication": {
+        "type": "ManagedServiceIdentity"
+      }
+    }
   }
 },
     {
