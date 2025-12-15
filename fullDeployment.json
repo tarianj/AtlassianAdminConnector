@@ -348,7 +348,7 @@
                         },
                         "body": [
                           {
-                            "TimeGenerated": "@{coalesce(todatetime(items('For_each')?['attributes']?['time']), utcNow())}",
+                            "TimeGenerated": "@{items('For_each')?['attributes']?['time']}",
                             "data": "@{items('For_each')}"
                           }
                         ],
